@@ -54,5 +54,30 @@ def test_add_addressbook_in_mh():
         # logout
         browser.find_by_css('li.dropdown.user').click()
         browser.click_link_by_partial_href('logout')
-    pass
 
+
+def test_delete_addressbook_in_mh():
+    with Browser() as browser:
+        # open url
+        browser.visit('https://bulk.boomware.com/login')
+        # login
+        browser.fill('email', 'test@svyazcom.ru')
+        browser.fill('password', '123456Test')
+        browser.find_by_tag('button').click()
+        # enter token
+        browser.fill('code', '978896')
+        browser.find_by_tag('button').click()
+        # open AB page
+        browser.click_link_by_partial_href('address_book')
+        # open actions menu
+        browser.find_by_xpath("//button[@type='button']").click()
+        # browser.is_element_visible_by_css("ul.dropdown-menu", wait_time=5)
+        # browser.is_element_present_by_css("ul.dropdown-menu", wait_time=5)
+        # init deletion
+        browser.is_element_visible_by_css("a.modal_delete", wait_time=5)
+        browser.find_by_css("a.modal_delete").click()
+        # submit deletion
+        browser.find_by_xpath("//button[@type='submit']").click()
+        # logout
+        browser.find_by_css('li.dropdown.user').click()
+        browser.click_link_by_partial_href('logout')
