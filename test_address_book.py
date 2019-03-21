@@ -69,12 +69,11 @@ def test_delete_addressbook_in_mh():
         browser.find_by_tag('button').click()
         # open AB page
         browser.click_link_by_partial_href('address_book')
+        # waiting complete loading of the webpage
+        browser.is_text_present("Начните вводить название книги", wait_time=5)
         # open actions menu
         browser.find_by_xpath("//button[@type='button']").click()
-        # browser.is_element_visible_by_css("ul.dropdown-menu", wait_time=5)
-        # browser.is_element_present_by_css("ul.dropdown-menu", wait_time=5)
         # init deletion
-        browser.is_element_visible_by_css("a.modal_delete", wait_time=5)
         browser.find_by_css("a.modal_delete").click()
         # submit deletion
         browser.find_by_xpath("//button[@type='submit']").click()
